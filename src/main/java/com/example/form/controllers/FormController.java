@@ -1,6 +1,8 @@
 package com.example.form.controllers;
 
 import com.example.form.models.Usuario;
+import com.example.form.validation.UsuarioValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,12 +20,15 @@ import java.util.Map;
 @SessionAttributes("usuario")
 public class FormController {
 
+    @Autowired
+    private UsuarioValidator usuarioValidator;
+
     @GetMapping("/form")
     public String form(Model model){
         Usuario usuario = new Usuario();
         usuario.setNombre("Cesar");
         usuario.setApellido("Mesa");
-        usuario.setId("123215 - K");
+        usuario.setidentificacion("123215 - K");
         model.addAttribute("titulo", "Form usuarios");
         model.addAttribute("usuario", usuario);
         return "form";
@@ -31,6 +36,7 @@ public class FormController {
 
     @PostMapping("/form")
     public String procesar(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result, Model model, SessionStatus sessionStatus){
+        usuarioValidator.validate(usuario, result);
         model.addAttribute("titulo", "Resultado form");
         if(result.hasErrors()){
            /*

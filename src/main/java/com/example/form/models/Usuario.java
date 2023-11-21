@@ -7,14 +7,14 @@ import javax.validation.constraints.Size;
 
 public class Usuario {
 
-    @NotEmpty(message = "El nombre no puede ser vacio")
+    //@NotEmpty(message = "El nombre no puede ser vacio")
     private String nombre;
     @NotEmpty
 
     private String apellido;
     // "Doble back slash d significa de 0-9
-    @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
-    private String id;
+    //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    private String identificacion;
     @NotEmpty
     @Size(min = 3, max = 8)
     private String username;
@@ -64,11 +64,11 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public String getId() {
-        return id;
+    public String getidentificacion() {
+        return identificacion;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setidentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 }
